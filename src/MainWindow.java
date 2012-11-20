@@ -12,7 +12,6 @@ public SouthDisplay southDisplay;
 		setSize(1300,550);
 		southDisplay = new SouthDisplay(playingArea);
 		add(southDisplay,BorderLayout.SOUTH);
-		
 	}
 	public static void main(String[] args) {
 		MainWindow mainWindow = new MainWindow();
