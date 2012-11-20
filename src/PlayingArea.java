@@ -7,23 +7,60 @@ import javax.swing.JPanel;
 
 public class PlayingArea extends JPanel{
 private MainWindow mainWindow;
+private David david;
+private Goliath goliath;
+private Rock rock;
+
 public PlayingArea(MainWindow mainWindow){
 	this.mainWindow = mainWindow;
 	addMouseListener(new CellClickedListener());
 	repaint();
-	System.out.println("Raa");
+	isLaunched = false;
 }
 
-
+private Location mouseClickLocation;
 @Override
 protected void paintComponent(Graphics g) {
 	// TODO Auto-generated method stub
 	super.paintComponent(g);
+	
 //	g.drawArc(30, 30, 300, 100, 50, 50);
 	
 //	System.out.println("look here" + );
-	g.drawArc(30, 30,10* mainWindow.southDisplay.slider3.getValue(),10* mainWindow.southDisplay.slider4.getValue(), mainWindow.southDisplay.slider5.getValue(), mainWindow.southDisplay.slider6.getValue());
+	System.out.println(mainWindow.southDisplay.slider5.getValue()/100.0*360.0);
+	shootingAngle = (int)( mainWindow.southDisplay.slider5.getValue()/100.0*360.0);
+	Location theHandleLocation = getBowHandleLocation();
+	g.drawArc(30, 30, 50,50,getBowStartAngle(),180);
+	g.drawLine(30, 30, 80, 80);
 }
+
+//shooting angle from 0 to 360
+private int shootingAngle;
+
+
+private int getBowStartAngle(){
+	return shootingAngle+270;
+}
+
+private Location getTopBowHandleLocation(){
+	Location topHandle = new Location(david.davidsHoldHand.getX()-Math.,david.davidsHoldHand.getY());
+	
+}
+
+private boolean isLaunched;
+private Location getBottomBowHandleLocation(){
+	return new Location();
+	
+}
+
+private void getAngleDataForBow(int angleData []){
+	//x y width height startAngle arcAngle
+
+	
+}
+
+
+
 
 
 

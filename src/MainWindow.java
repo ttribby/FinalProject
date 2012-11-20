@@ -1,7 +1,6 @@
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
-import javax.swing.JSlider;
 
 
 public class MainWindow extends JFrame {
@@ -11,7 +10,7 @@ public SouthDisplay southDisplay;
 		PlayingArea playingArea = new PlayingArea(this);
 		add(playingArea,BorderLayout.CENTER);
 		setSize(1300,550);
-		southDisplay = new SouthDisplay();
+		southDisplay = new SouthDisplay(playingArea);
 		add(southDisplay,BorderLayout.SOUTH);
 		
 	}
