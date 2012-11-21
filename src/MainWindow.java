@@ -7,6 +7,7 @@ public class MainWindow extends JFrame {
 public SouthDisplay southDisplay;
 	
 	public MainWindow(){
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		PlayingArea playingArea = new PlayingArea(this);
 		add(playingArea,BorderLayout.CENTER);
 		setSize(1300,550);

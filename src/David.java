@@ -1,4 +1,7 @@
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
 
 public class David {
 	public David(){
@@ -32,12 +35,13 @@ public class David {
 	}
 	
 	public void drawDavid(Graphics g){
-		g.drawLine(leftFootLocationLocation.getX(), leftFootLocationLocation.getY(), crotchLocationLocation.getX(), crotchLocationLocation.getY());
-		g.drawLine(rightFootLocationLocation.getX(), rightFootLocationLocation.getY(), crotchLocationLocation.getX(), crotchLocationLocation.getY());
-		g.drawLine(crotchLocationLocation.getX(), crotchLocationLocation.getY(), neckLocation.getX(), neckLocation.getY());
-		g.drawOval(headLocation.getX(), headLocation.getY(), headRadius, headRadius);
-		g.drawLine(neckEndLocation.getX(), neckEndLocation.getY(), nonShootingHandLocation.getX(), nonShootingHandLocation.getY());
-		g.drawLine(neckEndLocation.getX(), neckEndLocation.getY(), shootingElboLocation.getX(), shootingElboLocation.getY());
-		g.drawLine(shootingElboLocation.getX(), shootingElboLocation.getY(), shootingHandLocation.getX(), shootingHandLocation.getY());
+		Graphics2D g2 = (Graphics2D) g;
+		g2.draw(new Line2D.Double(leftFootLocationLocation.getX(), leftFootLocationLocation.getY(), crotchLocationLocation.getX(), crotchLocationLocation.getY()));
+		g2.draw(new Line2D.Double(rightFootLocationLocation.getX(), rightFootLocationLocation.getY(), crotchLocationLocation.getX(), crotchLocationLocation.getY()));
+		g2.draw(new Line2D.Double(crotchLocationLocation.getX(), crotchLocationLocation.getY(), neckLocation.getX(), neckLocation.getY()));
+		g2.draw(new Ellipse2D.Double(headLocation.getX(), headLocation.getY(), headRadius, headRadius));
+		g2.draw(new Line2D.Double(neckEndLocation.getX(), neckEndLocation.getY(), nonShootingHandLocation.getX(), nonShootingHandLocation.getY()));
+		g2.draw(new Line2D.Double(neckEndLocation.getX(), neckEndLocation.getY(), shootingElboLocation.getX(), shootingElboLocation.getY()));
+		g2.draw(new Line2D.Double(shootingElboLocation.getX(), shootingElboLocation.getY(), shootingHandLocation.getX(), shootingHandLocation.getY()));
 	}
 }

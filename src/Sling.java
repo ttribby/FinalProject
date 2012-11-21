@@ -1,4 +1,7 @@
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
 
 
 public class Sling {
@@ -7,7 +10,6 @@ public class Sling {
 		this.david = david;
 		movingLeft = false;
 		slingLengthRadius = 80;
-		int waa = david.shootingHandLocation.getX();
 		endOfSling = new Location((david.shootingHandLocation.getX() + slingLengthRadius),(david.shootingHandLocation.getY() ));
 
 	}
@@ -19,10 +21,13 @@ public class Sling {
 		return (int) Math.hypot( (endOfSling.getX()-david.shootingHandLocation.getX()),(endOfSling.getY()-david.shootingHandLocation.getY()));
 	}
 	public void updateAngle(int angle){
-		endOfSling.setX((int) (getSlingLengthFromPosition()*Math.cos(angle)+david.shootingHandLocation.getX()));
-		endOfSling.setY((int) (getSlingLengthFromPosition()*Math.sin(angle)+david.shootingHandLocation.getY()));
+		final int slingLength = getSlingLengthFromPosition();
+		System.out.println("angle = " + angle);
+		endOfSling.setX((int) (slingLength*Math.cos(angle)+david.shootingHandLocation.getX()));
+		endOfSling.setY((int) (slingLength*Math.sin(angle)+david.shootingHandLocation.getY()));
 	}
 	public void drawNextEndOfSlingLocation(int angle,int speed,Graphics g){
+		Graphics2D g2 = (Graphics2D) g;
 		int xMovingIncrementor;
 		int yMovingIncrementor;
 		//if sling is moving to the left
@@ -30,19 +35,13 @@ public class Sling {
 			//if reached left end
 			if(getSlingLengthFromPosition()>=slingLengthRadius){
 				movingLeft=false;
-				xMovingIncrementor = (int)(speed*Math.cos(angle));
-				yMovingIncrementor = (int)(speed*Math.sin(angle));
-				System.out.println("xMovingIncrementor = " + xMovingIncrementor);
-				System.out.println("yMovingIncrementor = " + yMovingIncrementor);
-				endOfSling.setX(xMovingIncrementor+endOfSling.getX());
-				endOfSling.setY(yMovingIncrementor+endOfSling.getY());
+				endOfSling.setX((int)(speed*Math.cos(angle))+endOfSling.getX());
+				endOfSling.setY((int)(speed*Math.sin(angle))+endOfSling.getY());
 				System.out.println("movingLeft = false");
 			}else{
 			//keep moving to the left
-				xMovingIncrementor = (int)(-speed*Math.cos(angle));
-				yMovingIncrementor = (int)(-speed*Math.sin(angle));
-				endOfSling.setX(xMovingIncrementor+endOfSling.getX());
-				endOfSling.setY(yMovingIncrementor+endOfSling.getY());
+				endOfSling.setX( (int)(-speed*Math.cos(angle))+endOfSling.getX());
+				endOfSling.setY( (int)(-speed*Math.sin(angle))+endOfSling.getY());
 			}
 		}else{
 			//if reached right end
@@ -67,8 +66,8 @@ public class Sling {
 		}
 		System.out.println("xlocation is " + endOfSling.getX());
 		System.out.println("ylocation is " + endOfSling.getY());
-		g.drawLine(david.shootingHandLocation.getX(), david.shootingHandLocation.getY(), endOfSling.getX(), endOfSling.getY());
-		g.fillOval(endOfSling.getX()-rockWidth/2,endOfSling.getY()-rockWidth/2, rockWidth, rockWidth);
+		g2.draw(new Line2D.Double(david.shootingHandLocation.getX(), david.shootingHandLocation.getY(), endOfSling.getX(), endOfSling.getY()));
+		g2.fill(new Ellipse2D.Double(endOfSling.getX()-rockWidth/2,endOfSling.getY()-rockWidth/2, rockWidth, rockWidth));
 	}
 	private int rockWidth = 10;
 }
