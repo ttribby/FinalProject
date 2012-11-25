@@ -1,22 +1,14 @@
-public class Location {
-	public Location(int x, int y) {
+import java.awt.geom.Point2D;
 
-		this.x = x;
-		this.y = y;
+public class Location extends Point2D.Double {
+	public Location(double x, double y) {
+		super(x,y);
 	}
-	private int x;
-	private int y;
-	public int getX() {
-		return x;
+	public void setX(double tx){
+		x = tx;
 	}
-	public void setX(int x) {
-		this.x = x;
-	}
-	public int getY() {
-		return y;
-	}
-	public void setY(int y) {
-		this.y = y;
+	public void setY(double ty){
+		y=ty;
 	}
 
 }

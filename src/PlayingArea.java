@@ -1,7 +1,9 @@
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.Line2D;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -40,12 +42,13 @@ private class UpdateDrawing extends TimerTask {
 private Location mouseClickLocation;
 @Override
 protected void paintComponent(Graphics g) {
+	Graphics2D g2 = (Graphics2D) g;
 	// TODO Auto-generated method stub
 	super.paintComponent(g);
 	david.drawDavid(g);
 	sling.drawNextEndOfSlingLocation(0, 5, g);
 	if(drawLine){
-		g.drawLine(lineStart.getX(), lineStart.getY(), lineEnd.getX(), lineEnd.getY());
+		g2.draw(new Line2D.Double(lineStart.getX(), lineStart.getY(), lineEnd.getX(), lineEnd.getY()));
 		if ((lineEnd.getX()-lineStart.getX())   == 0)
 			mainWindow.southDisplay.angleResult.setText("0");
 		else{
