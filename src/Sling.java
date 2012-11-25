@@ -16,7 +16,7 @@ public class Sling {
 
 	private int slingLengthRadius;
 	private int getSlingLengthFromPosition(){
-		return (int) Math.hypot( (endOfSling.getX()-david.shootingHandLocation.getX()),(endOfSling.getY()-david.shootingHandLocation.getY()));
+		return (int) Math.sqrt(Math.pow((endOfSling.getX()-david.shootingHandLocation.getX()), 2) +Math.pow((endOfSling.getY()-david.shootingHandLocation.getY()), 2) );
 	}
 	public void updateAngle(int angle){
 		endOfSling.setX((int) (getSlingLengthFromPosition()*Math.cos(angle)+david.shootingHandLocation.getX()));
